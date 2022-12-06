@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { PasswordValidators } from '../password-validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loggin',
@@ -10,7 +11,7 @@ import { PasswordValidators } from '../password-validators';
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.formLogin = new FormGroup ({
@@ -39,7 +40,7 @@ export class LogginComponent implements OnInit {
   }
 
   submit(){
-    alert('Hola mundo');
+    this.router.navigate(['/home']);
   }
 
   get email(){
@@ -82,7 +83,4 @@ export class LogginComponent implements OnInit {
     return this.formLogin.controls[field].touched;
   }
 
-  get f(){
-    return this.formLogin.controls;
-  }
 }
