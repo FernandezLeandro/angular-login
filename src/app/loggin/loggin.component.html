@@ -4,7 +4,7 @@
 
         <div>
             <input type="text" id="email" pInputText placeholder="Email" formControlName="email"/>
-            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" >
+            <div class="errors" *ngIf="email?.invalid && (email?.dirty || email?.touched)" >
                 <div *ngIf="email?.errors?.['required']">
                     Email is required
                 </div>
@@ -12,9 +12,20 @@
         </div>
 
         <div>
-            <input type="password" id="password" formControlName="password" pInputText placeholder="Password"/>     
+            <input type="password" id="password" formControlName="password" pInputText placeholder="Password"/>  
+            <div class="errors" *ngIf="password?.invalid && (password?.touched || password?.dirty)">
+                <div *ngIf="password?.hasError('required')">
+                  Password is required
+                </div>
+                <div *ngIf="password?.errors?.['minlength']">
+                    Must be at least 8 characters long
+                  </div>
+                <div class="error-text" *ngIf="password?.hasError('passwordStrength')">
+                    {{password?.errors?.['passwordStrength']}}
+                </div>
+                </div>
         </div>
-            <button pButton [disabled]="formLogin.invalid" type="button">Login</button>
+            <button pButton [disabled]="formLogin.invalid" type="submit">Login</button>
     </form>
 </div>
 

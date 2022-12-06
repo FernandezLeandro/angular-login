@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PasswordValidators } from '../password-validators';
 
 @Component({
   selector: 'app-loggin',
@@ -8,6 +9,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
+
+  submitted = false;
+  isWorking = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -22,19 +26,50 @@ export class LogginComponent implements OnInit {
       password:['', 
       [
         Validators.required,
-        Validators.minLength(6),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$')    
+        Validators.minLength(8),
+        //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$')    
+        PasswordValidators
       ]
     ]
     });
   }
 
-  verify(): any{
-    console.log(this.formLogin.value);
-  
-  }
-
   get email(){
     return this.formLogin.get('email');
+  }
+
+  get password(){
+    return this.formLogin.get('password');
+  }
+  get f(){
+    return this.formLogin.contains;
+  }
+
+  get passwordValid(){
+    return this.formLogin.controls["password"].errors === null;
+  }
+
+  get requiredValid(){
+    return !this.formLogin.controls["password"].hasError("required");
+  }
+
+  get requiredDigitValid() {
+    return !this.formLogin.controls["password"].hasError("requiresDigit");  
+  }
+
+  verify(): any{
+    this.submitted = true;
+
+    if(this.formLogin.invalid){
+      return;
+    }
+
+    this.isWorking = true;
+    this.formLogin.disable;
+
+    setTimeout(() => {
+      this.isWorking = false;
+      this.formLogin.enable();
+    }, 1500);
   }
 }
