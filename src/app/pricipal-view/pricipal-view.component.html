@@ -1,1 +1,37 @@
-<p>Welcome!</p>
+<body>
+    <h1>Register</h1>
+    <div class="principal">
+        <form class="form" (submit)="register()">
+            <div>
+                <label for="username">Name</label>
+                <input type="text" id="username" pInputText>
+            </div>
+            
+            <div>
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" pInputText>
+            </div>
+
+            <div>
+                <label for="bornDate">Born Date</label>
+                <input type="date" id="bornDate" pInputText >
+            </div>
+
+            <div>
+                <label for="phone">Phone number</label>
+                <input type="number" id="phone" pInputText >
+            </div>
+
+            <div>
+                <input class="terminos" type="checkbox" name="terminos" class="myCheck" id="myCheck">
+                <label for="terminos">
+                    <a for="terminos" style="color:black;padding-left:10px;">Aceptar los <a style="color:blue;" href="#">Términos y Condiciones</a></a>
+                </label>
+            </div>
+                
+            <div>
+                <p-button type="submit">Register</p-button>
+            </div>
+        </form>
+    </div>
+</body>

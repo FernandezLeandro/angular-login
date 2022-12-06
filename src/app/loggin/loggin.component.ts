@@ -1,7 +1,8 @@
+//import { PasswordValidators } from './../password-validators';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { PasswordValidators } from '../password-validators';
 import { Router } from '@angular/router';
+import { CustomValidationsService } from '../services/custon-validations/custom-validations.service';
 
 @Component({
   selector: 'app-loggin',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private customValidations:CustomValidationsService) { }
 
   ngOnInit(): void {
     this.formLogin = new FormGroup ({
@@ -22,21 +23,22 @@ export class LogginComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
-        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[0-9])"), {
+        Validators.minLength(6),
+        this.customValidations.passwordValidatorsRegEx(new RegExp("(?=.*[0-9])"), {
           requiresDigit: true
         }),
-        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[A-Z])"), {
+        this.customValidations.passwordValidatorsRegEx(new RegExp("(?=.*[A-Z])"), {
           requiresUppercase: true
         }),
-        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[a-z])"), {
+        this.customValidations.passwordValidatorsRegEx(new RegExp("(?=.*[a-z])"), {
           requiresLowercase: true
         }),
-        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[$@^!%*?&])"), {
+        this.customValidations.passwordValidatorsRegEx(new RegExp("(?=.*[$@^!%*?&])"), {
           requiresSpecialChars: true
         })
       ])
     })
+    
   }
 
   submit(){

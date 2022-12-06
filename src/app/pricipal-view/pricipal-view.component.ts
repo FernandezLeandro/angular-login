@@ -12,4 +12,7 @@ export class PricipalViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  register (){
+    
+  }
 }
