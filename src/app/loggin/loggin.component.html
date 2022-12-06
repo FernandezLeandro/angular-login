@@ -1,0 +1,27 @@
+<h1>Login</h1>
+<div>   
+    <form class="form" [formGroup]="formLogin" (submit)="verify()">
+
+        <div>
+            <input type="text" id="email" pInputText placeholder="Email" formControlName="email"/>
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" >
+                <div *ngIf="email?.errors?.['required']">
+                    Email is required
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <input type="password" id="password" formControlName="password" pInputText placeholder="Password"/>     
+        </div>
+            <button pButton [disabled]="formLogin.invalid" type="button">Login</button>
+    </form>
+</div>
+
+<div>
+    Valid: {{formLogin.valid | json}}
+</div>
+
+
+
+    
