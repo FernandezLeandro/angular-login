@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { PasswordValidators } from '../password-validators';
 
 @Component({
@@ -10,39 +10,40 @@ import { PasswordValidators } from '../password-validators';
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
 
-  submitted = false;
-  isWorking = false;
-
-  constructor(private formBuilder: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.formLogin = this.formBuilder.group({
-      email:['', 
-      [
-        Validators.required, 
-        Validators.email
-      ]
-    ],
-      password:['', 
-      [
+    this.formLogin = new FormGroup ({
+      email: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
-        //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$')    
-        PasswordValidators
-      ]
-    ]
-    });
+        Validators.minLength(9),
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[0-9])"), {
+          requiresDigit: true
+        }),
+        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[A-Z])"), {
+          requiresUppercase: true
+        }),
+        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[a-z])"), {
+          requiresLowercase: true
+        }),
+        PasswordValidators.passwordValidatorsRegEx(new RegExp("(?=.*[$@^!%*?&])"), {
+          requiresSpecialChars: true
+        })
+      ])
+    })
+  }
+
+  submit(){
+    alert('Hola mundo');
   }
 
   get email(){
     return this.formLogin.get('email');
-  }
-
-  get password(){
-    return this.formLogin.get('password');
-  }
-  get f(){
-    return this.formLogin.contains;
   }
 
   get passwordValid(){
@@ -53,23 +54,35 @@ export class LogginComponent implements OnInit {
     return !this.formLogin.controls["password"].hasError("required");
   }
 
-  get requiredDigitValid() {
-    return !this.formLogin.controls["password"].hasError("requiresDigit");  
+  get minLengthValid(){
+    return !this.formLogin.controls["password"].hasError("minlength");
   }
 
-  verify(): any{
-    this.submitted = true;
+  get requiresDigitValid(){
+    return !this.formLogin.controls["password"].hasError("requiresDigit");
+  }
 
-    if(this.formLogin.invalid){
-      return;
-    }
+  get requiresUpperCaseValid(){
+    return !this.formLogin.controls["password"].hasError("requiresUppercase");
+  }
 
-    this.isWorking = true;
-    this.formLogin.disable;
+  get requiresLowerCaseValid(){
+    return !this.formLogin.controls["password"].hasError("requiresLowercase");
+  }
 
-    setTimeout(() => {
-      this.isWorking = false;
-      this.formLogin.enable();
-    }, 1500);
+  get requiresSpecialCharsValid(){
+    return !this.formLogin.controls["password"].hasError("requiresSpecialChars");
+  }
+
+  public isDirty(field: string): boolean {
+    return this.formLogin.controls[field].dirty;
+  }
+
+  public isTouched(field: string): boolean {
+    return this.formLogin.controls[field].touched;
+  }
+
+  get f(){
+    return this.formLogin.controls;
   }
 }
