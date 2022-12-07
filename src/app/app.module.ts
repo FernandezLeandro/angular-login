@@ -9,12 +9,14 @@ import {ButtonModule} from 'primeng/button';
 import {PasswordModule} from 'primeng/password';
 import { PricipalViewComponent } from './pricipal-view/pricipal-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogginComponent,
-    PricipalViewComponent
+    PricipalViewComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

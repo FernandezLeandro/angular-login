@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { LogginComponent } from './loggin/loggin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,7 +7,8 @@ import { PricipalViewComponent } from './pricipal-view/pricipal-view.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path:'home', component:PricipalViewComponent},
-  {path:'login', component:LogginComponent}
+  {path:'login', component:LogginComponent},
+  {path:'register', component: RegisterComponent}
 ]
 
 @NgModule({

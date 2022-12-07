@@ -42,7 +42,7 @@ export class LogginComponent implements OnInit {
   }
 
   submit(){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/register']);
   }
 
   get email(){
