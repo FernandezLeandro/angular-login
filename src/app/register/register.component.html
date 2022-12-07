@@ -3,9 +3,11 @@
     <div class="principal">
         <form class="form" [formGroup]="formRegister" (submit)="register()">
             <div>
-                <label for="name">Name</label>
+                <div class="labelInput">
+                    <label for="name">Name</label>
+                </div>         
                 <input type="text" id="name" formControlName="name" pInputText>
-                <div *ngIf="(!nameValid) && (isDirty('name') || isTouched('name'))"  class="errors">
+                <div *ngIf="(!fieldValid('name')) && (isDirty('name') || isTouched('name'))"  class="errors">
                     <div>
                         <span *ngIf="!evaluateFieldRequiredValid('name')">
                             Name is required
@@ -22,29 +24,76 @@
             </div>
             
             <div>
-                <label for="surname">Surname</label>
+                <div class="labelInput">
+                    <label for="surname">Surname</label>
+                </div>
+               
                 <input type="text" id="surname" formControlName="surname" pInputText>
+                <div *ngIf="(!fieldValid('surname')) && (isDirty('surname') || isTouched('surname'))"  class="errors">
+                    <div>
+                        <span *ngIf="!evaluateFieldRequiredValid('surname')">
+                            Name is required
+                        </span>
+                    </div>
+                    <div>
+                        <span *ngIf="!evaluateFieldMinLengthValid('surname')">
+                            Name must at least 3 characters
+                        </span>
+                    </div>
+                </div>
             </div>
 
             <div>
-                <label for="bornDate">Born Date</label>
+                <div class="labelInput">
+                    <label for="bornDate">Born Date</label>
+                </div>
+                
                 <input type="date" id="bornDate" formControlName="bornDate" pInputText >
+                <div *ngIf="(!fieldValid('bornDate')) && (isDirty('bornDate') || isTouched('bornDate'))"  class="errors">
+                    <div>
+                        <span *ngIf="!evaluateFieldRequiredValid('bornDate')">
+                            Date is required
+                        </span>
+                    </div>
+
+                </div>
             </div>
 
             <div>
-                <label for="phone">Phone number</label>
+                <div class="labelInput">
+                    <label for="phone">Phone number</label>
+                </div>
+                
                 <input type="number" id="phone" formControlName="phone" pInputText >
+                <div *ngIf="(!fieldValid('phone')) && (isDirty('phone') || isTouched('phone'))"  class="errors">
+                    <div>
+                        <span *ngIf="!evaluateFieldRequiredValid('phone')">
+                            Name is required
+                        </span>
+                    </div>
+                    <div>
+                        <span *ngIf="!min">
+                            Number invalid
+                        </span>
+                    </div>
+                </div>
             </div>
             
             <div>
-                <label for="username">Username</label>
+                <div class="labelInput">
+                    <label for="username">Username</label>
+                </div>
+                
                 <input type="text" id="username" formControlName="username" pInputText >
             </div>
 
             <div>
-                <label for="email">Email</label>
+                <div class="labelInput">
+                    <label for="email">Email</label>
+                </div>
+                
                 <input type="text" id="email" formControlName="email" pInputText>
-                <div *ngIf="(!emailValid) && (isDirty('email') || isTouched('email'))"  class="errors">
+                <div *ngIf="(!fieldValid('email')) && (isDirty('email') || isTouched('email'))"  class="errors">
 
                     <div>
                         <span *ngIf="!evaluateFieldRequiredValid('email')">
@@ -65,6 +114,13 @@
                     </div>
                     
                 </div>
+            </div>
+
+            <div>
+                <input type="file" id="avatar" (change)="captureFile($event)" formControlName="avatar" accept='image/*' >
+            </div>
+            <div>
+                <img [src]="preview" alt="">
             </div>
             <div>
                 <input class="terminos" type="checkbox" name="terminos" class="myCheck" id="myCheck">

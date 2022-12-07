@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PricipalViewComponent } from './pricipal-view/pricipal-view.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/register', pathMatch: 'full' },
   {path:'home', component:PricipalViewComponent},
   {path:'login', component:LogginComponent},
   {path:'register', component: RegisterComponent}

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Sanitizer } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidationsService } from '../services/custon-validations/custom-validations.service';
 import { Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 
@@ -11,27 +12,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  public preview?: string;
   public formRegister!: FormGroup;
 
-  constructor(private customValidations:CustomValidationsService, private router: Router) {}
+  constructor(private customValidations:CustomValidationsService, private router: Router, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.formRegister = new FormGroup({
       name: new FormControl ('', [
         Validators.required,
-        Validators.minLength(4)
+        Validators.minLength(4),
+        Validators.maxLength(20)
       ]),
-      surname: new FormControl(),
-      bornDate: new FormControl(),
-      phone: new FormControl(),
+      surname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3)
+      ]),
+      bornDate: new FormControl('', [
+        Validators.required
+      ]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.min(999999999)
+      ]),
       username: new FormControl(),
 
       email: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
         Validators.email
-      ])
+      ]),
+      avatar: new FormControl()
     })
   }
 
@@ -39,8 +50,8 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  get nameValid(){
-    return this.formRegister.controls["name"].errors === null;
+  public fieldValid(field: string){
+    return this.formRegister.controls[field].errors === null;
   }
 
   public evaluateFieldRequiredValid(field : string){
@@ -50,33 +61,13 @@ export class RegisterComponent implements OnInit {
   public evaluateFieldMinLengthValid(field : string){
     return !this.formRegister.controls[field].hasError("minlength");
   }
-  /*
-  get nameRequiredValid(){
-    return !this.formRegister.controls["name"].hasError("required");
-  }
 
-  get nameMinLength(){
-    return !this.formRegister.controls["name"].hasError("minLength");
-  }
-*/
-  get emailValid(){
-    return this.formRegister.controls["email"].errors === null;
-  }
-/*
-  get emailRequiredValid(){
-    return !this.formRegister.controls["email"].hasError("required");
-  }
-
-  get emailMinLength(){
-    return !this.formRegister.controls["email"].hasError("minlength");
-  }
-*/
   get emailValidateStructure(){
     return !this.formRegister.controls["email"].hasError("email");
   }
 
-  get f(){
-    return this.formRegister.controls;
+  get min(){
+    return !this.formRegister.controls["phone"].hasError("min");
   }
 
   public isDirty(field: string): boolean {
@@ -87,8 +78,35 @@ export class RegisterComponent implements OnInit {
     return this.formRegister.controls[field].touched;
   }
 
-  get email(){
-    return this.formRegister.get('email');
+  captureFile(event: any){
+    const fileCapturated = event.target.files[0];
+    this.extraerBase64(fileCapturated).then((imagen: any) => {
+      this.preview = imagen.base;
+      console.log(imagen);
+
+    })
+
   }
 
+  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+
+    } catch (e) {
+      return null;
+    }
+  })
 }
