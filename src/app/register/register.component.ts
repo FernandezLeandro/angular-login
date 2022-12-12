@@ -35,19 +35,31 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.min(999999999)
       ]),
-      username: new FormControl(),
-
       email: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(7),
         Validators.email
       ]),
-      avatar: new FormControl()
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        this.customValidations.valitatorsNumbersValid(),
+        this.customValidations.valitatorsUpperCaseValid(),
+        this.customValidations.validatorsLowerCaseValid(),
+        this.customValidations.validatorsSpecialCharacter()
+      ]),
+      avatar: new FormControl('', [
+        Validators.required
+      ]),
+      terms: new FormControl (false, [
+        Validators.required,
+        Validators.requiredTrue
+      ])
     })
   }
 
   register (){
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home']);   
   }
 
   public fieldValid(field: string){
@@ -56,6 +68,10 @@ export class RegisterComponent implements OnInit {
 
   public evaluateFieldRequiredValid(field : string){
     return !this.formRegister.controls[field].hasError("required");
+  }
+
+  public evaluateFieldRequiredTrueValid(field : string){
+    return !this.formRegister.controls[field].hasError('required', 'terms');
   }
 
   public evaluateFieldMinLengthValid(field : string){
@@ -68,6 +84,34 @@ export class RegisterComponent implements OnInit {
 
   get min(){
     return !this.formRegister.controls["phone"].hasError("min");
+  }
+
+  get passwordValid(){
+    return this.formRegister.controls["password"].errors === null;
+  }
+
+  get requiredValid(){
+    return !this.formRegister.controls["password"].hasError("required");
+  }
+
+  get minLengthValid(){
+    return !this.formRegister.controls["password"].hasError("minlength");
+  }
+
+  get requiresDigitValid(){
+    return !this.formRegister.controls["password"].hasError("requiresDigit");
+  }
+
+  get requiresUpperCaseValid(){
+    return !this.formRegister.controls["password"].hasError("requiresUppercase");
+  }
+
+  get requiresLowerCaseValid(){
+    return !this.formRegister.controls["password"].hasError("requiresLowercase");
+  }
+
+  get requiresSpecialCharsValid(){
+    return !this.formRegister.controls["password"].hasError("requiresSpecialChars");
   }
 
   public isDirty(field: string): boolean {

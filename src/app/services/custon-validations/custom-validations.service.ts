@@ -36,4 +36,5 @@ export class CustomValidationsService {
   public validatorsSpecialCharacter(): ValidatorFn {
     return this.passwordValidatorsRegEx(RegularExpressions.atLeastASpecialCharacter, {requiresSpecialChars: true});
   }
+
 }

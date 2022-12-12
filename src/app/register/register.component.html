@@ -32,12 +32,12 @@
                 <div *ngIf="(!fieldValid('surname')) && (isDirty('surname') || isTouched('surname'))"  class="errors">
                     <div>
                         <span *ngIf="!evaluateFieldRequiredValid('surname')">
-                            Name is required
+                            Surname is required
                         </span>
                     </div>
                     <div>
                         <span *ngIf="!evaluateFieldMinLengthValid('surname')">
-                            Name must at least 3 characters
+                            Surname must at least 3 characters
                         </span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div *ngIf="(!fieldValid('bornDate')) && (isDirty('bornDate') || isTouched('bornDate'))"  class="errors">
                     <div>
                         <span *ngIf="!evaluateFieldRequiredValid('bornDate')">
-                            Date is required
+                            Born date is required
                         </span>
                     </div>
 
@@ -68,12 +68,12 @@
                 <div *ngIf="(!fieldValid('phone')) && (isDirty('phone') || isTouched('phone'))"  class="errors">
                     <div>
                         <span *ngIf="!evaluateFieldRequiredValid('phone')">
-                            Name is required
+                            Phone number is required
                         </span>
                     </div>
                     <div>
                         <span *ngIf="!min">
-                            Number invalid
+                            Phone number is invalid
                         </span>
                     </div>
                 </div>
@@ -81,17 +81,8 @@
             
             <div>
                 <div class="labelInput">
-                    <label for="username">Username</label>
-                </div>
-                
-                <input type="text" id="username" formControlName="username" pInputText >
-            </div>
-
-            <div>
-                <div class="labelInput">
                     <label for="email">Email</label>
-                </div>
-                
+                </div>        
                 <input type="text" id="email" formControlName="email" pInputText>
                 <div *ngIf="(!fieldValid('email')) && (isDirty('email') || isTouched('email'))"  class="errors">
 
@@ -116,17 +107,63 @@
                 </div>
             </div>
 
-            <div>
-                <input type="file" id="avatar" (change)="captureFile($event)" formControlName="avatar" accept='image/*' >
+            <div id="passwordDiv">
+                <div class="labelInput">
+                    <label for="password">Password</label>
+                </div>
+                
+                <input type="text" id="password" formControlName="password" pInputText >
+                <div *ngIf="(!passwordValid) && (isDirty('password') || isTouched('password'))" class="errors">
+                    <div *ngIf="!requiredValid">
+                        Password is required.
+                    </div>
+                        
+                    <div *ngIf="!requiresDigitValid">
+                        Debe tener un numero
+                    </div>
+              
+                    <div *ngIf="!minLengthValid">
+                        Debe tener un minimo de 6 caracteres
+                    </div>
+                      
+                    <div *ngIf="!requiresUpperCaseValid">
+                        Debe tener una letra mayuscula
+                    </div>
+    
+                    <div *ngIf="!requiresLowerCaseValid">
+                        Debe tener una letra minuscula
+                    </div>
+    
+                    <div *ngIf="!requiresSpecialCharsValid">
+                        Debe tener un caracter especial
+                    </div>
+                </div>
             </div>
-            <div>
-                <img [src]="preview" alt="">
+            <div id="inputFileDiv">
+                <div>
+                    <input type="file" id="avatar" (change)="captureFile($event)" formControlName="avatar" accept='image/*' >
+                </div>
+                <div>
+                    <img [src]="preview" alt="">
+                </div>
+                <div *ngIf="(!fieldValid('avatar'))" class="errors">
+                    <div *ngIf="!evaluateFieldRequiredValid('avatar')">
+                        Select a image file.
+                    </div>                 
+                </div>
             </div>
-            <div>
-                <input class="terminos" type="checkbox" name="terminos" class="myCheck" id="myCheck">
-                <label for="terminos">
-                    <a for="terminos" style="color:black;padding-left:10px;">Accept the <a style="color:blue;" href="#">Terms and Conditions</a></a>
+            
+            <div id="termsDiv">
+                <input class="terms" type="checkbox" name="terms" class="myCheck" id="terms" formControlName="terms">
+                <label for="terms">
+                    <a for="terms" style="color:black;padding-left:10px;" style="color:blue;" href="#"> Terms and Conditions</a>
                 </label>
+
+                <div *ngIf="(!fieldValid('terms'))" class="errors">
+                    <div *ngIf="!evaluateFieldRequiredValid('terms')">
+                        Accepts Terms and Conditions
+                    </div>                 
+                </div>
             </div>
                 
             <div>
