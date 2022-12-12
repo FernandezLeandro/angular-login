@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidationsService } from '../services/custon-validations/custom-validations.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { UsersValidationsService } from '../services/users-validation/users-validations.service';
 
 
 @Component({
@@ -15,7 +15,10 @@ export class RegisterComponent implements OnInit {
   public preview?: string;
   public formRegister!: FormGroup;
 
-  constructor(private customValidations:CustomValidationsService, private router: Router, private sanitizer: DomSanitizer) {}
+  constructor(private customValidations:CustomValidationsService,
+             private router: Router, 
+             private sanitizer: DomSanitizer,
+             private usersValidations: UsersValidationsService) {}
 
   ngOnInit(): void {
     this.formRegister = new FormGroup({
@@ -59,7 +62,20 @@ export class RegisterComponent implements OnInit {
   }
 
   register (){
-    this.router.navigate(['/home']);   
+    //this.router.navigate(['/home']); 
+    if(this.usersValidations.registerUser(this.emailValue, this.passwordValue)){
+      alert('User registered.');
+      this.router.navigate(['/login']);
+    }else
+      alert('User already exist');  
+  }
+
+  get emailValue(){
+    return this.formRegister.get('email')?.value;
+  }
+
+  get passwordValue(){
+    return this.formRegister.get('password')?.value;
   }
 
   public fieldValid(field: string){

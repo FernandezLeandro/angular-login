@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidationsService } from '../services/custon-validations/custom-validations.service';
+import { UsersValidationsService } from '../services/users-validation/users-validations.service';
 
 @Component({
   selector: 'app-loggin',
@@ -12,7 +13,8 @@ import { CustomValidationsService } from '../services/custon-validations/custom-
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
 
-  constructor(private router:Router, private customValidations:CustomValidationsService) { }
+  constructor(private router:Router, private customValidations:CustomValidationsService,
+    private usersValidation: UsersValidationsService) { }
 
   ngOnInit(): void {
     this.formLogin = new FormGroup ({
@@ -33,12 +35,27 @@ export class LogginComponent implements OnInit {
     
   }
 
-  submit(){
-    this.router.navigate(['/register']);
+  loggin(){
+    if(this.validateLoggin(this.emailValue, this.passwordValue)){
+      this.usersValidation.showUsers();
+      this.router.navigate(['/home'])
+    }else
+      alert('User or Password incorrect');
   }
 
+  validateLoggin(email: string, password: string):boolean{
+    return this.usersValidation.validateLoggin(email, password);
+  }
   get email(){
     return this.formLogin.get('email');
+  }
+
+  get emailValue(){
+    return this.formLogin.get('email')?.value;
+  }
+
+  get passwordValue(){
+    return this.formLogin.get('password')?.value;
   }
 
   get passwordValid(){

@@ -1,6 +1,6 @@
 <h1>Login</h1>
 <div>   
-    <form class="form" [formGroup]="formLogin" (submit)="submit()">
+    <form class="form" [formGroup]="formLogin" (submit)="loggin()">
 
         <div>
             <input type="text" id="email" pInputText placeholder="Email" formControlName="email"/>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-            <button pButton [disabled]="formLogin.invalid" type="submit">Login</button>
+            <button pButton type="submit">Login</button>
     </form>
 </div>
 
