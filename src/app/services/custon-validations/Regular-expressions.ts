@@ -1,4 +1,3 @@
-
 export class RegularExpressions {
     static atLeastANumber = new RegExp("(?=.*[0-9])");
     static atLeastALowerCase = new RegExp("(?=.*[a-z])");

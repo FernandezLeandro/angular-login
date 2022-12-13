@@ -1,29 +1,29 @@
-import { User } from './User';
+import { User } from '../../model/User';
 import { Injectable } from '@angular/core';
-import { USERS } from './mock-users';
+import { USERS } from 'src/app/model/mock-users';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersValidationsService {
-  
+
 
   constructor() { }
 
-  existUserAndPassword(email: string, password:string){
+  existUserAndPassword(email: string, password: string) {
     let exist = false;
-    for(let user of USERS){
-      if ((user.email == email) && (user.password== password)){
+    for (let user of USERS) {
+      if ((user.email == email) && (user.password == password)) {
         exist = true;
       }
     }
     return exist;
   }
 
-  existUser(email: string){
+  existUser(email: string) {
     let exist = false;
-    for(let user of USERS){
-      if ((user.email == email)){
+    for (let user of USERS) {
+      if ((user.email == email)) {
         exist = true;
       }
     }
@@ -34,19 +34,11 @@ export class UsersValidationsService {
     return this.existUserAndPassword(email, password);
   }
 
-  registerUser(email: string, password: string){
-    if(!this.existUser(email)){
-      USERS.push({email, password});
+  registerUser(email: string, password: string) {
+    if (!this.existUser(email)) {
+      USERS.push({ email, password });
       return true;
     } else
-        return false;
+      return false;
   }
-
-  showUsers(){
-    for(let user of USERS){
-      console.log(user.email);
-      console.log(user.password);
-    }
-  }
-
 }

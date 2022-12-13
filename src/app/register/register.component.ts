@@ -15,7 +15,8 @@ export class RegisterComponent implements OnInit {
   public preview?: string;
   public formRegister!: FormGroup;
 
-  constructor(private customValidations: CustomValidationsService,
+  constructor(
+    private customValidations: CustomValidationsService,
     private router: Router,
     private sanitizer: DomSanitizer,
     private usersValidations: UsersValidationsService) { }
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.minLength(7),
+        Validators.minLength(8),
         Validators.email
       ]),
       password: new FormControl('', [
@@ -62,14 +63,31 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    if(){
-      
+    if (this.isValidForm()) {
+      alert('Complete all fields correctly.');
+    } else {
+      if (this.usersValidations.registerUser(this.emailValue, this.passwordValue)) {
+        alert('User registered.');
+        this.router.navigate(['/login']);
+      } else
+        alert('User already exist.');
     }
-    if (this.usersValidations.registerUser(this.emailValue, this.passwordValue)) {
-      alert('User registered.');
-      this.router.navigate(['/login']);
-    } else
-      alert('User already exist');
+
+  }
+
+  private isValidForm() {
+    return this.formRegister.controls['name'].invalid ||
+      this.formRegister.controls['surname'].invalid ||
+      this.formRegister.controls['bornDate'].invalid ||
+      this.formRegister.controls['phone'].invalid ||
+      this.formRegister.controls['email'].invalid ||
+      this.formRegister.controls['password'].invalid ||
+      this.formRegister.controls['avatar'].invalid ||
+      this.formRegister.controls['terms'].invalid;
+  }
+
+  public isNotValidAndIsDirtyOrIsTouched(field: string) {
+    return !this.fieldValid(field) && (this.isDirty(field) || this.isTouched(field));
   }
 
   get emailValue() {
@@ -100,7 +118,7 @@ export class RegisterComponent implements OnInit {
     return !this.formRegister.controls["email"].hasError("email");
   }
 
-  get min() {
+  get minValid() {
     return !this.formRegister.controls["phone"].hasError("min");
   }
 
