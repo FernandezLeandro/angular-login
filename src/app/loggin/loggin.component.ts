@@ -25,11 +25,11 @@ export class LogginComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),     
-        this.customValidations.valitatorsNumbersValid(),
-        this.customValidations.valitatorsUpperCaseValid(),
-        this.customValidations.validatorsLowerCaseValid(),
-        this.customValidations.validatorsSpecialCharacter()
+        //Validators.minLength(6),     
+        //this.customValidations.valitatorsNumbersValid(),
+        //this.customValidations.valitatorsUpperCaseValid(),
+        //this.customValidations.validatorsLowerCaseValid(),
+        //this.customValidations.validatorsSpecialCharacter()
       ])
     })
     

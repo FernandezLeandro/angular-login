@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pricipal-view.component.css']
 })
 export class PricipalViewComponent implements OnInit {
-
+  
   constructor() {}
   ngOnInit(): void {
       

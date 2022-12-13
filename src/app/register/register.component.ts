@@ -15,14 +15,14 @@ export class RegisterComponent implements OnInit {
   public preview?: string;
   public formRegister!: FormGroup;
 
-  constructor(private customValidations:CustomValidationsService,
-             private router: Router, 
-             private sanitizer: DomSanitizer,
-             private usersValidations: UsersValidationsService) {}
+  constructor(private customValidations: CustomValidationsService,
+    private router: Router,
+    private sanitizer: DomSanitizer,
+    private usersValidations: UsersValidationsService) { }
 
   ngOnInit(): void {
     this.formRegister = new FormGroup({
-      name: new FormControl ('', [
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(20)
@@ -54,79 +54,81 @@ export class RegisterComponent implements OnInit {
       avatar: new FormControl('', [
         Validators.required
       ]),
-      terms: new FormControl (false, [
+      terms: new FormControl(false, [
         Validators.required,
         Validators.requiredTrue
       ])
     })
   }
 
-  register (){
-    //this.router.navigate(['/home']); 
-    if(this.usersValidations.registerUser(this.emailValue, this.passwordValue)){
+  register() {
+    if(){
+      
+    }
+    if (this.usersValidations.registerUser(this.emailValue, this.passwordValue)) {
       alert('User registered.');
       this.router.navigate(['/login']);
-    }else
-      alert('User already exist');  
+    } else
+      alert('User already exist');
   }
 
-  get emailValue(){
+  get emailValue() {
     return this.formRegister.get('email')?.value;
   }
 
-  get passwordValue(){
+  get passwordValue() {
     return this.formRegister.get('password')?.value;
   }
 
-  public fieldValid(field: string){
+  public fieldValid(field: string) {
     return this.formRegister.controls[field].errors === null;
   }
 
-  public evaluateFieldRequiredValid(field : string){
+  public evaluateFieldRequiredValid(field: string) {
     return !this.formRegister.controls[field].hasError("required");
   }
 
-  public evaluateFieldRequiredTrueValid(field : string){
+  public evaluateFieldRequiredTrueValid(field: string) {
     return !this.formRegister.controls[field].hasError('required', 'terms');
   }
 
-  public evaluateFieldMinLengthValid(field : string){
+  public evaluateFieldMinLengthValid(field: string) {
     return !this.formRegister.controls[field].hasError("minlength");
   }
 
-  get emailValidateStructure(){
+  get emailValidateStructure() {
     return !this.formRegister.controls["email"].hasError("email");
   }
 
-  get min(){
+  get min() {
     return !this.formRegister.controls["phone"].hasError("min");
   }
 
-  get passwordValid(){
+  get passwordValid() {
     return this.formRegister.controls["password"].errors === null;
   }
 
-  get requiredValid(){
+  get requiredValid() {
     return !this.formRegister.controls["password"].hasError("required");
   }
 
-  get minLengthValid(){
+  get minLengthValid() {
     return !this.formRegister.controls["password"].hasError("minlength");
   }
 
-  get requiresDigitValid(){
+  get requiresDigitValid() {
     return !this.formRegister.controls["password"].hasError("requiresDigit");
   }
 
-  get requiresUpperCaseValid(){
+  get requiresUpperCaseValid() {
     return !this.formRegister.controls["password"].hasError("requiresUppercase");
   }
 
-  get requiresLowerCaseValid(){
+  get requiresLowerCaseValid() {
     return !this.formRegister.controls["password"].hasError("requiresLowercase");
   }
 
-  get requiresSpecialCharsValid(){
+  get requiresSpecialCharsValid() {
     return !this.formRegister.controls["password"].hasError("requiresSpecialChars");
   }
 
@@ -138,7 +140,7 @@ export class RegisterComponent implements OnInit {
     return this.formRegister.controls[field].touched;
   }
 
-  captureFile(event: any){
+  captureFile(event: any) {
     const fileCapturated = event.target.files[0];
     this.extraerBase64(fileCapturated).then((imagen: any) => {
       this.preview = imagen.base;

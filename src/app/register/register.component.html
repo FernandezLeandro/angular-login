@@ -1,4 +1,10 @@
+<head>
+    <title>Register</title>
+</head>
 <body>
+    <nav>
+        <a routerLink="/login">Home</a>
+    </nav>
     <h1>Register</h1>
     <div class="principal">
         <form class="form" [formGroup]="formRegister" (submit)="register()">
@@ -119,23 +125,23 @@
                     </div>
                         
                     <div *ngIf="!requiresDigitValid">
-                        Debe tener un numero
+                        Must at least 1 digit
                     </div>
               
                     <div *ngIf="!minLengthValid">
-                        Debe tener un minimo de 6 caracteres
+                        Must be at least 6 characters
                     </div>
                       
                     <div *ngIf="!requiresUpperCaseValid">
-                        Debe tener una letra mayuscula
+                        Must be at least 1 uppercase
                     </div>
     
                     <div *ngIf="!requiresLowerCaseValid">
-                        Debe tener una letra minuscula
+                        Must be at least 1 lowercase
                     </div>
     
                     <div *ngIf="!requiresSpecialCharsValid">
-                        Debe tener un caracter especial
+                        Must be at least 1 special character
                     </div>
                 </div>
             </div>
@@ -156,7 +162,7 @@
             <div id="termsDiv">
                 <input class="terms" type="checkbox" name="terms" class="myCheck" id="terms" formControlName="terms">
                 <label for="terms">
-                    <a for="terms" style="color:black;padding-left:10px;" style="color:blue;" href="#"> Terms and Conditions</a>
+                    <a for="terms" style="color:black;padding-left:10px;" style="color:blue;" href="/register"> Terms and Conditions</a>
                 </label>
 
                 <div *ngIf="(!fieldValid('terms'))" class="errors">
@@ -167,7 +173,7 @@
             </div>
                 
             <div>
-                <p-button type="submit" [disabled]="formRegister.invalid" onclick="register()">Register</p-button>
+                <p-button type="submit" onclick="register()">Register</p-button>
             </div>
         </form>
     </div>
