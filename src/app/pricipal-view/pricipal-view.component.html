@@ -1,1 +1,18 @@
 <h1>Welcome!</h1>
+<h2>My Users</h2>
+<table class="Users">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
+<tr *ngFor="let user of users">
+      <td>1</td>
+      <td>Leandro</td>
+      <td>Fernandez</td>
+      <td>1123860661</td>
+      <td>{{user.email}}</td>
+</tr>
+</table>

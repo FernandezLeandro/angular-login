@@ -11,7 +11,7 @@ import { UsersValidationsService } from '../services/users-validation/users-vali
 })
 export class LogginComponent implements OnInit {
   public formLogin!: FormGroup;
-
+  
   constructor(
     private router: Router,
     private customValidations: CustomValidationsService,
@@ -38,15 +38,12 @@ export class LogginComponent implements OnInit {
   }
 
   loggin() {
-    if (this.validateLoggin(this.emailValue, this.passwordValue)) {
+    if (this.usersValidation.validateLoggin(this.emailValue, this.passwordValue)) {
       this.router.navigate(['/home'])
     } else
       alert('User or Password incorrect');
   }
 
-  validateLoggin(email: string, password: string): boolean {
-    return this.usersValidation.validateLoggin(email, password);
-  }
 
   public fieldValid(field: string) {
     return this.formLogin.controls[field].errors === null;

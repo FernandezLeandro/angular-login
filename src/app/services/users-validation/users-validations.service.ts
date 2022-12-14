@@ -7,31 +7,18 @@ import { USERS } from 'src/app/model/mock-users';
 })
 export class UsersValidationsService {
 
-
   constructor() { }
 
-  existUserAndPassword(email: string, password: string) {
-    let exist = false;
-    for (let user of USERS) {
-      if ((user.email == email) && (user.password == password)) {
-        exist = true;
-      }
-    }
-    return exist;
-  }
-
   existUser(email: string) {
-    let exist = false;
-    for (let user of USERS) {
-      if ((user.email == email)) {
-        exist = true;
-      }
-    }
-    return exist;
+    return USERS.some((obj) => {
+      return (obj.email === email)
+    });
   }
 
   validateLoggin(email: string, password: string) {
-    return this.existUserAndPassword(email, password);
+    return USERS.some((obj) => {
+      return (obj.email === email) && (obj.password === password)
+    });
   }
 
   registerUser(email: string, password: string) {
