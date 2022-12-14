@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
     if (this.isValidForm()) {
       alert('Complete all fields correctly.');
     } else {
-      if (this.usersValidations.registerUser(this.emailValue, this.passwordValue)) {
+      if (this.usersValidations.registerUser(this.nameValue,this.surnameValue,this.phoneValue,this.emailValue, this.passwordValue)) {
         alert('User registered.');
         this.router.navigate(['/login']);
       } else
@@ -88,6 +88,16 @@ export class RegisterComponent implements OnInit {
 
   public isNotValidAndIsDirtyOrIsTouched(field: string) {
     return !this.fieldValid(field) && (this.isDirty(field) || this.isTouched(field));
+  }
+
+  get nameValue() {
+    return this.formRegister.get('name')?.value;
+  }
+  get surnameValue() {
+    return this.formRegister.get('surname')?.value;
+  }
+  get phoneValue() {
+    return this.formRegister.get('phone')?.value;
   }
 
   get emailValue() {

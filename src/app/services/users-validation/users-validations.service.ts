@@ -6,7 +6,6 @@ import { USERS } from 'src/app/model/mock-users';
   providedIn: 'root'
 })
 export class UsersValidationsService {
-
   constructor() { }
 
   existUser(email: string) {
@@ -21,11 +20,15 @@ export class UsersValidationsService {
     });
   }
 
-  registerUser(email: string, password: string) {
+  registerUser(name: string, surname:string, phone:number,email: string, password: string) {
     if (!this.existUser(email)) {
-      USERS.push({ email, password });
+      USERS.push({name, surname, phone, email,password});  
       return true;
     } else
       return false;
+  }
+
+  addUser(user: User){
+    USERS.push(user);
   }
 }
