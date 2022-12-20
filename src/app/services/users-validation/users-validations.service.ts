@@ -25,14 +25,9 @@ export class UsersValidationsService {
     return form.get(field)?.value;
   }
 
-  registerUser(form: FormGroup) {
-    if (!this.existUser(form.get('email')?.value)) {
-      let name= this.fieldValue(form,'name');
-      let surname = form.get('surname')?.value;
-      let phone = form.get('phone')?.value;
-      let email = form.get('email')?.value;
-      let password = form.get('password')?.value;
-      USERS.push({name, surname, phone, email, password});  
+  registerUser(user: User) {
+    if (!this.existUser(user.email!)) {
+      USERS.push({id : USERS.length+1, name: user.name, surname : user.surname, phone: user.phone, email: user.email, password: user.password});  
       return true;
     } else
       return false;

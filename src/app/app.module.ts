@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { PasswordValidationDirective } from './services/custon-validations/password-directive/password-validation.directive';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PasswordValidationDirective } from './services/custon-validations/passw
     ButtonModule,
     PasswordModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

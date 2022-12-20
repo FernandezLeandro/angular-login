@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { USERS } from '../model/mock-users';
 import { Usuario } from './usuario';
-
+import { User } from '../model/User';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Usuario } from './usuario';
 export class PricipalViewComponent implements OnInit {
   users= USERS;
   model = new Usuario('', '', false, '');
-
+  selectedUser!: User[];
   submitted= false;
   
   
@@ -27,4 +27,6 @@ export class PricipalViewComponent implements OnInit {
   onSubmit(): void{
     this.submitted = true;
   }
+
+  
 }

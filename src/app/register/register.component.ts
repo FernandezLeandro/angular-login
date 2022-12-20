@@ -1,3 +1,4 @@
+import { USERS } from 'src/app/model/mock-users';
 import { User } from './../model/User';
 import { Component, OnInit, Sanitizer } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -27,7 +28,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.user);
+    this.usersValidations.registerUser(this.user);
+    console.log(USERS);
+    this.router.navigateByUrl('/login');
   }
 
   captureFile(event: any) {
