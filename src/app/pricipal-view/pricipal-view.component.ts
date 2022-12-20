@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { USERS } from '../model/mock-users';
-import { User } from '../model/User';
+import { Usuario } from './usuario';
+
 
 
 @Component({
@@ -10,8 +11,20 @@ import { User } from '../model/User';
 })
 export class PricipalViewComponent implements OnInit {
   users= USERS;
+  model = new Usuario('', '', false, '');
+
+  submitted= false;
+  
+  
   constructor() {}
   ngOnInit(): void {
       
+  }
+
+  newHero(){
+    this.model = new Usuario('','',false,'');
+  }
+  onSubmit(): void{
+    this.submitted = true;
   }
 }

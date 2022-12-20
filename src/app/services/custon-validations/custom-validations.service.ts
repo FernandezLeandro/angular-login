@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { RegularExpressions } from './Regular-expressions';
+import { RegularExpressions } from './regular-expressions';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,18 @@ export class CustomValidationsService {
 
 
   constructor() { }
-
-  private passwordValidatorsRegEx(regex: RegExp, error: ValidationErrors): ValidatorFn {
+/*
+  static passwordValidatorsRegEx(regex: RegExp): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.value) {
+        return null;
+      }
+      const valid = regex.test(control.value);
+      return valid ? {valueValidation: true} : null;
+    }
+  }
+*/
+  static passwordValidatorsRegEx(regex: RegExp, error: ValidationErrors): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (!control.value) {
         return null;
@@ -21,19 +31,19 @@ export class CustomValidationsService {
     }
   }
 
-  public valitatorsNumbersValid(): ValidatorFn {
+  static valitatorsNumbersValid(): ValidatorFn {
     return this.passwordValidatorsRegEx(RegularExpressions.atLeastANumber, { requiresDigit: true });
   }
 
-  public valitatorsUpperCaseValid(): ValidatorFn {
+  static valitatorsUpperCaseValid(): ValidatorFn {
     return (this.passwordValidatorsRegEx(RegularExpressions.atLeastAUpperCase, { requiresUppercase: true }));
   }
 
-  public validatorsLowerCaseValid(): ValidatorFn {
+  static validatorsLowerCaseValid(): ValidatorFn {
     return this.passwordValidatorsRegEx(RegularExpressions.atLeastALowerCase, { requiresLowercase: true });
   }
 
-  public validatorsSpecialCharacter(): ValidatorFn {
+  static validatorsSpecialCharacter(): ValidatorFn {
     return this.passwordValidatorsRegEx(RegularExpressions.atLeastASpecialCharacter, { requiresSpecialChars: true });
   }
 

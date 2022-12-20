@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { User } from '../../model/User';
 import { Injectable } from '@angular/core';
 import { USERS } from 'src/app/model/mock-users';
@@ -20,15 +21,22 @@ export class UsersValidationsService {
     });
   }
 
-  registerUser(name: string, surname:string, phone:number,email: string, password: string) {
-    if (!this.existUser(email)) {
-      USERS.push({name, surname, phone, email,password});  
+  public fieldValue(form: FormGroup, field: string) {
+    return form.get(field)?.value;
+  }
+
+  registerUser(form: FormGroup) {
+    if (!this.existUser(form.get('email')?.value)) {
+      let name= this.fieldValue(form,'name');
+      let surname = form.get('surname')?.value;
+      let phone = form.get('phone')?.value;
+      let email = form.get('email')?.value;
+      let password = form.get('password')?.value;
+      USERS.push({name, surname, phone, email, password});  
       return true;
     } else
       return false;
   }
 
-  addUser(user: User){
-    USERS.push(user);
-  }
+  
 }

@@ -10,13 +10,16 @@ import {PasswordModule} from 'primeng/password';
 import { PricipalViewComponent } from './pricipal-view/pricipal-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
+import { PasswordValidationDirective } from './services/custon-validations/password-directive/password-validation.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogginComponent,
     PricipalViewComponent,
-    RegisterComponent
+    RegisterComponent,
+    PasswordValidationDirective
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { RegisterComponent } from './register/register.component';
     InputTextModule,
     ButtonModule,
     PasswordModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
