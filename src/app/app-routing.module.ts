@@ -1,3 +1,4 @@
+import { MenuComponent } from './menu/menu/menu.component';
 import { RegisterComponent } from './register/register.component';
 import { LogginComponent } from './loggin/loggin.component';
 import { NgModule } from '@angular/core';

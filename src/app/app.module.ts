@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogginComponent } from './loggin/loggin.component';
@@ -13,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { PasswordValidationDirective } from './services/custon-validations/password-directive/password-validation.directive';
 import {TableModule} from 'primeng/table';
+import {MenuModule} from 'primeng/menu';
+import {TabMenuModule} from 'primeng/tabmenu';
+import { MenuComponent } from './menu/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import {TableModule} from 'primeng/table';
     LogginComponent,
     PricipalViewComponent,
     RegisterComponent,
-    PasswordValidationDirective
+    PasswordValidationDirective,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,9 @@ import {TableModule} from 'primeng/table';
     PasswordModule,
     ReactiveFormsModule,
     FormsModule,
-    TableModule
+    TableModule,
+    MenuModule,
+    TabMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
