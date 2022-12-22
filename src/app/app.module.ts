@@ -15,6 +15,13 @@ import {TableModule} from 'primeng/table';
 import {MenuModule} from 'primeng/menu';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { MenuComponent } from './menu/menu/menu.component';
+import { InspectionComponent } from './inspection/inspection.component';
+import { UsersDetailComponent } from './users-detail/users-detail/users-detail.component';
+import {StepsModule} from 'primeng/steps';
+import { CompanyComponent } from './inspection/company/company.component';
+import { EmployeeComponent } from './inspection/employee/employee.component';
+import { ConfirmationComponent } from './inspection/confirmation/confirmation.component';
+import {CardModule} from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -23,7 +30,12 @@ import { MenuComponent } from './menu/menu/menu.component';
     PricipalViewComponent,
     RegisterComponent,
     PasswordValidationDirective,
-    MenuComponent
+    MenuComponent,
+    UsersDetailComponent,
+    InspectionComponent,
+    CompanyComponent,
+    EmployeeComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +48,8 @@ import { MenuComponent } from './menu/menu/menu.component';
     TableModule,
     MenuModule,
     TabMenuModule,
+    StepsModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
