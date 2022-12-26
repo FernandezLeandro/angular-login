@@ -8,7 +8,50 @@
     </ng-template>
 
     <ng-template pTemplate="content">
-        Here will be the content
+        <div id="companyInfo">
+            <div>
+                <label>Company's Name</label>
+                <label>
+                    <b>{{
+                        confirmationInformation.companyInformation.name ? confirmationInformation.companyInformation.name : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+    
+            <div>
+                <label>Razon Social</label>
+                <label>
+                    <b>{{
+                        confirmationInformation.companyInformation.razonSocial ? confirmationInformation.companyInformation.razonSocial : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+    
+            <div>
+                <label>Cuit</label>
+                <label>
+                    <b>{{
+                        confirmationInformation.companyInformation.cuit ? confirmationInformation.companyInformation.cuit : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+        </div>
+
+        <div id="employeeInfo">
+            <div>
+                <label>Name</label>
+                <label>
+                    <b>{{
+                        confirmationInformation.employeeInformation.name ? confirmationInformation.employeeInformation.name : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+        </div>
+          
     </ng-template>
 
     <ng-template pTemplate="footer">
@@ -19,3 +62,4 @@
     </ng-template>
     
 </p-card>
+
