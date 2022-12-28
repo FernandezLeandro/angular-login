@@ -9,8 +9,9 @@
 
     <ng-template pTemplate="content">
         <div id="companyInfo">
+            <label>Company's Information</label>
             <div>
-                <label>Company's Name</label>
+                <label>Company's Name: </label>
                 <label>
                     <b>{{
                         confirmationInformation.companyInformation.name ? confirmationInformation.companyInformation.name : '-'
@@ -20,7 +21,7 @@
             </div>
     
             <div>
-                <label>Razon Social</label>
+                <label>Razon Social: </label>
                 <label>
                     <b>{{
                         confirmationInformation.companyInformation.razonSocial ? confirmationInformation.companyInformation.razonSocial : '-'
@@ -30,7 +31,7 @@
             </div>
     
             <div>
-                <label>Cuit</label>
+                <label>Cuit: </label>
                 <label>
                     <b>{{
                         confirmationInformation.companyInformation.cuit ? confirmationInformation.companyInformation.cuit : '-'
@@ -41,11 +42,39 @@
         </div>
 
         <div id="employeeInfo">
+            <label>Employees Information</label>
             <div>
-                <label>Name</label>
+                <label>Name: </label>
                 <label>
                     <b>{{
                         confirmationInformation.employeeInformation.name ? confirmationInformation.employeeInformation.name : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+            <div>
+                <label>Surname: </label>
+                <label>
+                    <b>{{
+                        confirmationInformation.employeeInformation.surname ? confirmationInformation.employeeInformation.surname : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+            <div>
+                <label>Cuit: </label>
+                <label>
+                    <b>{{
+                        confirmationInformation.employeeInformation.cuit ? confirmationInformation.employeeInformation.cuit : '-'
+                      }}</b>
+                </label>
+                <br/>
+            </div>
+            <div>
+                <label>Position: </label>
+                <label>
+                    <b>{{
+                        confirmationInformation.employeeInformation.position ? confirmationInformation.employeeInformation.position : '-'
                       }}</b>
                 </label>
                 <br/>

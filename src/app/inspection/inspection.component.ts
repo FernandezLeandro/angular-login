@@ -14,11 +14,11 @@ export class InspectionComponent implements OnInit {
   ngOnInit(): void {
     this.items = [{
         label: 'Company',
-        routerLink: 'company'
-      },
+        routerLink: 'company'},
       {
-        label: 'Employee',
-        routerLink: 'employee'},
+        label: 'Employees',
+        routerLink: 'employee'
+      },
       {
         label: 'Confirmation',
         routerLink: 'confirmation'

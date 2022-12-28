@@ -1,3 +1,5 @@
+import { COMPANIES } from './../../model/mock-companies';
+import { Employee } from 'src/app/model/Employee';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/model/Company';
@@ -21,6 +23,7 @@ export class CompanyComponent implements OnInit {
   ngOnInit(): void {
     this.company = new Company();
     this.companyInformation = this.inspectionService.getCompanyInformation();
+    //this.companyInformation.cuit = null;
     this.companies = this.companyService.getCompanies();
   }
 
@@ -29,5 +32,5 @@ export class CompanyComponent implements OnInit {
     //this.inspectionService.confirmationInformation.companyInformation = this.companyInformation;
     this.router.navigate(['inspection/employee']);
   }
-  
+
 }

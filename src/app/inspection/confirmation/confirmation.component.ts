@@ -15,6 +15,7 @@ export class ConfirmationComponent implements OnInit {
     this.confirmationInformation = this.inspectionService.getConfirmationInformation();
   }
   confirm() {
+    this.inspectionService.addCompany();
     alert('You have confirmed')
   }
   prevPage(){

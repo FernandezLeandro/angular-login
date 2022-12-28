@@ -12,4 +12,17 @@ export class CompanyService {
   getCompanies(){
     return COMPANIES;
   }
+
+  getEmployeeByCompany(company: string){
+    console.log(COMPANIES.filter(c => c.name == company));
+  }
+
+  addCompany(company: Company){
+    console.log(company.name);
+    if(typeof company.employees === "object"){
+      console.log(company.employees[0].name);
+      COMPANIES.push(company);
+    }
+    //COMPANIES.push({name: company.companyInformation.name, razonSocial: company.});
+  }
 }

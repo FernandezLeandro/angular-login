@@ -10,7 +10,7 @@
     <ng-template pTemplate="content">
         <div>
             <label for="name">Name</label>
-            <input id="name" type="text" [(ngModel)]="employee.name" #name="ngModel" required pInputText> 
+            <input id="name" type="text" [(ngModel)]="personalInformation.name" #name="ngModel" required pInputText> 
             <div [hidden]="name.valid || !name.touched" class="errors">
                 <div *ngIf="name.errors?.['required']">
                     Name is required.
@@ -19,7 +19,7 @@
         </div>
         <div>        
             <label for="surname">Surname</label>
-            <input id="surname" type="text" [(ngModel)]="employee.surname" #surname="ngModel" required pInputText>
+            <input id="surname" type="text" [(ngModel)]="personalInformation.surname" #surname="ngModel" required pInputText>
             <div [hidden]="surname.valid || !surname.touched" class="errors">
                 <div *ngIf="surname.errors?.['required']">
                     Surname is required.
@@ -28,7 +28,7 @@
         </div>
         <div>        
             <label for="cuit">Cuit</label>
-            <input id="cuit" type="text" [(ngModel)]="employee.cuit" #cuit="ngModel" required pInputText> 
+            <input id="cuit" type="number" [(ngModel)]="personalInformation.cuit" #cuit="ngModel" required pInputText> 
             <div [hidden]="cuit.valid || !cuit.touched" class="errors">
                 <div *ngIf="cuit.errors?.['required']">
                     Cuit is required.
@@ -37,7 +37,7 @@
         </div>
         <div>        
             <label for="position">Position</label>
-            <input id="position" type="text" [(ngModel)]="employee.position" #position="ngModel" required pInputText> 
+            <input id="position" type="text" [(ngModel)]="personalInformation.position" #position="ngModel" required pInputText> 
             <div [hidden]="position.valid || !position.touched" class="errors">
                 <div *ngIf="position.errors?.['required']">
                     Position is required.
