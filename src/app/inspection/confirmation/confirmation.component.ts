@@ -13,6 +13,8 @@ export class ConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.confirmationInformation = this.inspectionService.getConfirmationInformation();
+    console.log(this.confirmationInformation.employeeInformation);
+    console.log(this.confirmationInformation.employeeInformation.length);
   }
   confirm() {
     this.inspectionService.addCompany();

@@ -9,7 +9,7 @@
 
     <ng-template pTemplate="content">
         <div id="companyInfo">
-            <label>Company's Information</label>
+            <h3>Company's Information</h3>
             <div>
                 <label>Company's Name: </label>
                 <label>
@@ -42,42 +42,27 @@
         </div>
 
         <div id="employeeInfo">
-            <label>Employees Information</label>
-            <div>
-                <label>Name: </label>
-                <label>
-                    <b>{{
-                        confirmationInformation.employeeInformation.name ? confirmationInformation.employeeInformation.name : '-'
-                      }}</b>
-                </label>
-                <br/>
-            </div>
-            <div>
-                <label>Surname: </label>
-                <label>
-                    <b>{{
-                        confirmationInformation.employeeInformation.surname ? confirmationInformation.employeeInformation.surname : '-'
-                      }}</b>
-                </label>
-                <br/>
-            </div>
-            <div>
-                <label>Cuit: </label>
-                <label>
-                    <b>{{
-                        confirmationInformation.employeeInformation.cuit ? confirmationInformation.employeeInformation.cuit : '-'
-                      }}</b>
-                </label>
-                <br/>
-            </div>
-            <div>
-                <label>Position: </label>
-                <label>
-                    <b>{{
-                        confirmationInformation.employeeInformation.position ? confirmationInformation.employeeInformation.position : '-'
-                      }}</b>
-                </label>
-                <br/>
+            <h3>Employees Information</h3>
+            <div *ngFor="let employee of confirmationInformation.employeeInformation">
+                <div>
+                    <h4>Employee {{confirmationInformation.employeeInformation.indexOf(employee)+1}}</h4>
+                </div>
+                <div>
+                    <label>Name: </label>
+                    <label>{{employee.name}}</label>
+                </div>        
+                <div>
+                    <label>Surname: </label>
+                    <label>{{employee.surname}}</label>
+                </div>
+                <div>
+                    <label>Cuit: </label>
+                    <label>{{employee.cuit ? employee.cuit: ''}}</label>
+                </div>
+                <div>
+                    <label>Position: </label>
+                    <label>{{employee.position}}</label>
+                </div>
             </div>
         </div>
           

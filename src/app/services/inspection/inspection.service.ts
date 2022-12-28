@@ -14,12 +14,7 @@ export class InspectionService {
       razonSocial: '',
       cuit: 0,
     },
-    employeeInformation: {
-      name: '',
-      surname: '',
-      cuit: 0,
-      position: ''
-    }   
+    employeeInformation: []
   };
 
   constructor(
@@ -51,28 +46,12 @@ export class InspectionService {
   }
 
   addCompany(){
-    let employees: Employee[] = [this.confirmationInformation.employeeInformation];
+    let employees: Employee[] = this.confirmationInformation.employeeInformation;
     this.companyService.addCompany(new Company (this.confirmationInformation.companyInformation.name,
       this.confirmationInformation.companyInformation.razonSocial,
       this.confirmationInformation.companyInformation.cuit, employees
       ));
-    //this.clearInformation();
-  }
 
-  clearInformation(){
-    this.confirmationInformation = {
-      companyInformation: {
-        name: '',
-        razonSocial: '',
-        cuit: 0,
-      },
-      employeeInformation: {
-        name: '',
-        surname: '',
-        cuit: 0,
-        position: ''
-      }   
-    };
   }
 
 }
