@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { USERS } from '../model/mock-users';
 import { Usuario } from './usuario';
 import { User } from '../model/User';
+import { CompanyService } from '../services/company-service/company.service';
 
 
 @Component({
@@ -14,11 +15,13 @@ export class PricipalViewComponent implements OnInit {
   model = new Usuario('', '', false, '');
   selectedUser!: User[];
   submitted= false;
+  companies: any;
   
-  
-  constructor() {}
+  constructor(
+    private companyService: CompanyService
+  ) {}
   ngOnInit(): void {
-      
+     this.companies = this.companyService.getCompanies(); 
   }
 
   newHero(){

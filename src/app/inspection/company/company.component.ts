@@ -12,7 +12,6 @@ import { CompanyService } from 'src/app/services/company-service/company.service
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
-  company!: Company;
   companyInformation : any;
   companies: any;
   constructor(
@@ -21,9 +20,7 @@ export class CompanyComponent implements OnInit {
               private companyService: CompanyService) { }
 
   ngOnInit(): void {
-    this.company = new Company();
     this.companyInformation = this.inspectionService.getCompanyInformation();
-    //this.companyInformation.cuit = null;
     this.companies = this.companyService.getCompanies();
   }
 

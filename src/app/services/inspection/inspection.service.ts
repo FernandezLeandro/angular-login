@@ -56,6 +56,23 @@ export class InspectionService {
       this.confirmationInformation.companyInformation.razonSocial,
       this.confirmationInformation.companyInformation.cuit, employees
       ));
+    //this.clearInformation();
+  }
+
+  clearInformation(){
+    this.confirmationInformation = {
+      companyInformation: {
+        name: '',
+        razonSocial: '',
+        cuit: 0,
+      },
+      employeeInformation: {
+        name: '',
+        surname: '',
+        cuit: 0,
+        position: ''
+      }   
+    };
   }
 
 }
